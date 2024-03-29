@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import HomeCard from "./HomeCard";
 import { useRouter } from "next/navigation";
-import MeetingModel from "./MeetingModel";
+import MeetingModal from "./MeetingModal";
 
 const MeetingTypeList = () => {
   const router = useRouter();
@@ -43,7 +43,7 @@ const MeetingTypeList = () => {
         handleClick={() => router.push("/recordings")}
       />
 
-      <MeetingModel
+      <MeetingModal
         isOpen={meetingState === "isInstantMeeting"}
         onClose={() => setMeetingState(undefined)}
         title="Start an Instant Meeting"
