@@ -4,8 +4,10 @@ import { useUser } from "@clerk/nextjs";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+
 import HomeCard from "./HomeCard";
 import MeetingModal from "./MeetingModal";
+import Loader from "./Loader";
 
 const initialValues = {
   dateTime: new Date(),
@@ -58,6 +60,8 @@ const MeetingTypeList = () => {
       console.error(error);
     }
   };
+
+  if (!client || !user) return <Loader />;
 
   return (
     <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
