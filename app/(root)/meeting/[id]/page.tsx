@@ -6,6 +6,7 @@ import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk";
 // import { useGetCallById } from '@/hooks/useGetCallById';
 
 import Loader from "@/components/Loader";
+import MeetingSetup from "@/components/MeetingSetup";
 
 const MeetingPage = () => {
   const { id } = useParams();
@@ -18,7 +19,9 @@ const MeetingPage = () => {
   return (
     <main className="h-screen w-full">
       <StreamCall>
-        <StreamTheme></StreamTheme>
+        <StreamTheme>
+          <MeetingSetup />
+        </StreamTheme>
       </StreamCall>
     </main>
   );
