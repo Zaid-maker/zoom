@@ -20,7 +20,11 @@ const MeetingPage = () => {
     <main className="h-screen w-full">
       <StreamCall>
         <StreamTheme>
-          <MeetingSetup />
+          {!isSetupComplete ? (
+            <MeetingSetup setIsSetupComplete={setIsSetupComplete} />
+          ) : (
+            {}
+          )}
         </StreamTheme>
       </StreamCall>
     </main>
