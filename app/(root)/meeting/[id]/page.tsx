@@ -24,6 +24,14 @@ const MeetingPage = () => {
       </p>
     );
 
+  const notAllowed =
+    call.type === "invited" &&
+    (!user || !call.state.members.find((m) => m.user.id === user.id));
+
+  if (notAllowed) {
+    return <p>You are not allowed to join this meeting</p>;
+  }
+
   return (
     <main className="h-screen w-full">
       <StreamCall call={call}>
