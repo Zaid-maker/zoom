@@ -8,6 +8,7 @@ import { useState } from "react";
 import HomeCard from "./HomeCard";
 import MeetingModal from "./MeetingModal";
 import Loader from "./Loader";
+import { useToast } from "./ui/use-toast";
 
 const initialValues = {
   dateTime: new Date(),
@@ -24,12 +25,14 @@ const MeetingTypeList = () => {
   const [callDetail, setCallDetail] = useState<Call>();
   const { user } = useUser();
   const client = useStreamVideoClient();
+  const { toast } = useToast();
 
   const createMeeting = async () => {
     if (!client || !user) return;
 
     try {
       if (!values.dateTime) {
+        toast({ title: "Please select a date and time" });
         return;
       }
 
@@ -56,8 +59,13 @@ const MeetingTypeList = () => {
       if (!values.description) {
         router.push(`/meeting/${call.id}`);
       }
+
+      toast({
+        title: "Meeting Created",
+      });
     } catch (error) {
       console.error(error);
+      toast({ title: "Failed to create Meeting" });
     }
   };
 
